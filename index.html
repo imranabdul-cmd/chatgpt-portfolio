@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9fc">
+  <meta name="description" content="Imran A — Software Engineer and AI Engineer building AI-powered solutions for real-world problems.">
+  <title>Imran A — Software Engineer | AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #101522;
+      --muted: #68758d;
+      --blue: #155dfc;
+      --blue-2: #37b8ff;
+      --line: rgba(91, 113, 153, .17);
+      --glass: rgba(255, 255, 255, .68);
+      --shadow: 0 18px 55px rgba(28, 54, 112, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 72% 42%, rgba(173, 204, 255, .40), transparent 37%),
+        radial-gradient(ellipse at 20% 74%, rgba(218, 233, 255, .40), transparent 38%),
+        linear-gradient(120deg, #fbfcfe 0%, #f2f5fa 50%, #f9fbff 100%);
+      font-family: "DM Sans", sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .page-shell { width: min(1480px, calc(100% - 72px)); margin: 0 auto; }
+    .nav-wrap {
+      position: relative; z-index: 20; padding-top: 18px;
+    }
+    .nav {
+      height: 72px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between;
+      border: 1px solid rgba(255,255,255,.9); border-radius: 23px;
+      background: rgba(255,255,255,.72); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      box-shadow: 0 12px 42px rgba(37, 60, 101, .08);
+    }
+    .brand { font-family: Manrope, sans-serif; font-weight: 800; font-size: 31px; letter-spacing: -2.5px; }
+    .brand .dot { color: var(--blue); }
+    .nav-links { display: flex; align-items: center; gap: clamp(22px, 3vw, 49px); font-size: 14px; font-weight: 700; }
+    .nav-links a { position: relative; padding: 26px 0; transition: color .25s ease; }
+    .nav-links a::after { content: ""; position: absolute; height: 3px; width: 0; bottom: 16px; left: 0; border-radius: 9px; background: var(--blue); transition: width .25s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .connect {
+      display: inline-flex; gap: 12px; align-items: center; border-radius: 999px; padding: 13px 19px;
+      color: white; background: #07101f; font-size: 13px; font-weight: 700; box-shadow: 0 8px 18px rgba(8, 17, 35, .15);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .connect:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(8,17,35,.22); }
+    .menu-toggle { display: none; border: 0; background: transparent; font-size: 26px; color: var(--ink); }
+    .hero {
+      min-height: calc(100svh - 108px); display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(0, .97fr);
+      align-items: center; gap: 10px; position: relative; padding: 32px 0 28px;
+    }
+    .hero-copy { position: relative; z-index: 5; padding: 0 0 16px 0; }
+    .eyebrow { color: #788399; font-size: 13px; font-weight: 800; letter-spacing: .30em; margin: 0 0 13px; }
+    .hero h1 {
+      font-family: Manrope, sans-serif; font-size: clamp(64px, 7vw, 112px); line-height: .97; letter-spacing: -.085em;
+      margin: 0 0 18px; font-weight: 800; white-space: nowrap;
+    }
+    .hero h1 .accent {
+      display: inline-block; margin-left: .03em; color: var(--blue);
+      background: linear-gradient(115deg, #1a50f7 8%, #1678ff 46%, #44baff 70%, #1749e9 92%);
+      background-size: 220% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      position: relative; animation: nameShine 5s ease-in-out 1.2s infinite;
+    }
+    .hero h1 .accent::after {
+      content: ""; position: absolute; left: 1%; right: -8%; bottom: -7px; height: 5px; border-radius: 100%;
+      background: linear-gradient(90deg, transparent, #2867ff 17%, #2fa9ff 70%, transparent);
+      transform: rotate(-2deg); transform-origin: left; animation: underlineDraw 1.1s cubic-bezier(.16,1,.3,1) .85s both;
+    }
+    @keyframes nameShine { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes underlineDraw { from { transform: scaleX(0) rotate(-2deg); opacity: .2; } to { transform: scaleX(1) rotate(-2deg); opacity: 1; } }
+    .role { font-family: Manrope, sans-serif; font-size: clamp(20px, 2.1vw, 30px); line-height: 1.25; font-weight: 800; letter-spacing: -.035em; margin: 0 0 13px; }
+    .intro { max-width: 570px; color: var(--muted); font-size: clamp(16px, 1.3vw, 20px); line-height: 1.6; margin: 0; }
+    .intro strong { color: #225df4; font-weight: 700; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin-top: 28px; }
+    .btn {
+      min-height: 53px; padding: 0 24px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      font-size: 14px; font-weight: 800; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: #fff; background: linear-gradient(105deg, #32b5ff 0%, #1763ff 70%, #174bf2 100%); box-shadow: 0 12px 25px rgba(25, 104, 255, .23); min-width: 205px; }
+    .btn-primary:hover { box-shadow: 0 17px 30px rgba(25,104,255,.31); }
+    .btn-secondary { min-width: 194px; border: 1px solid rgba(119, 138, 174, .28); background: rgba(255,255,255,.48); }
+    .btn-secondary:hover { border-color: rgba(21,93,252,.42); box-shadow: 0 10px 20px rgba(25,53,107,.08); }
+    .highlights {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; max-width: 690px; margin-top: 31px;
+      padding: 15px 16px; border: 1px solid rgba(255,255,255,.95); border-radius: 23px;
+      background: rgba(255,255,255,.66); backdrop-filter: blur(15px); box-shadow: 0 13px 35px rgba(29,56,111,.07);
+    }
+    .highlight { display: flex; align-items: center; gap: 12px; padding: 4px 13px; min-width: 0; }
+    .highlight + .highlight { border-left: 1px solid var(--line); }
+    .highlight-icon {
+      width: 43px; height: 43px; flex: 0 0 43px; border-radius: 14px; display: grid; place-items: center;
+      color: var(--blue); background: linear-gradient(145deg, white, #eaf2ff); box-shadow: inset 0 0 0 1px rgba(61,116,255,.09);
+    }
+    .highlight-icon svg { width: 23px; height: 23px; }
+    .highlight strong { font-family: Manrope,sans-serif; font-size: 14px; line-height: 1.3; display: block; }
+    .highlight small { display: block; color: var(--muted); font-size: 11px; line-height: 1.35; margin-top: 4px; }
+    .tech-block { margin-top: 33px; }
+    .tech-label { color: #7f8aa0; font-size: 11px; letter-spacing: .25em; font-weight: 800; margin: 0 0 13px; }
+    .tech-list { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .tech {
+      width: 54px; height: 54px; display: grid; place-items: center; border-radius: 15px;
+      border: 1px solid rgba(255,255,255,.9); background: rgba(255,255,255,.73); box-shadow: 0 6px 20px rgba(33,67,135,.055);
+      transition: transform .25s ease, box-shadow .25s ease; font-size: 14px; font-weight: 800; color: var(--blue);
+    }
+    .tech:hover { transform: translateY(-5px); box-shadow: 0 12px 23px rgba(33,93,240,.15); }
+    .tech svg { width: 27px; height: 27px; }
+    .portrait-stage { position: relative; min-height: 660px; align-self: stretch; display: flex; align-items: center; justify-content: center; isolation: isolate; }
+    .halo {
+      position: absolute; z-index: -2; width: min(36vw, 535px); aspect-ratio: 1; border-radius: 50%;
+      background: radial-gradient(circle at 48% 42%, rgba(80,155,255,.44) 0%, rgba(152,193,255,.31) 38%, rgba(218,235,255,.15) 59%, transparent 71%);
+      top: 48%; left: 48%; transform: translate(-50%,-50%);
+    }
+    .orbit { position: absolute; border: 1px solid rgba(58,145,255,.33); border-radius: 50%; width: min(40vw, 590px); aspect-ratio: 1; top: 48%; left: 48%; transform: translate(-50%,-50%); z-index: -1; }
+    .orbit.two { width: min(33vw, 490px); border-color: rgba(87,171,255,.26); }
+    .orbit::before, .orbit::after { content: ""; position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #57a8ff; box-shadow: 0 0 0 6px rgba(87,168,255,.12); }
+    .orbit::before { top: 13%; left: 20%; }
+    .orbit::after { right: 7%; top: 47%; width: 6px; height: 6px; }
+    .portrait {
+      position: absolute; z-index: 2; height: min(79vh, 790px); max-height: 790px; width: auto; max-width: 95%; object-fit: contain;
+      object-position: bottom center; bottom: -2px; right: 5%; mix-blend-mode: multiply;
+      filter: drop-shadow(0 22px 26px rgba(19, 39, 78, .10));
+    }
+    .float-card {
+      position: absolute; z-index: 4; display: flex; align-items: center; gap: 13px; padding: 15px 18px;
+      min-width: 190px; border: 1px solid rgba(255,255,255,.94); border-radius: 18px;
+      background: rgba(255,255,255,.72); backdrop-filter: blur(16px); box-shadow: var(--shadow);
+      animation: float 5.4s ease-in-out infinite; transform: rotate(-3deg);
+    }
+    .float-card .card-icon { width: 43px; height: 43px; display: grid; place-items: center; flex: 0 0 43px; border-radius: 13px; background: linear-gradient(145deg,#fff,#e7f1ff); color: #2180ff; }
+    .card-icon svg { width: 27px; height: 27px; }
+    .float-card strong { font-family: Manrope,sans-serif; font-size: 13px; line-height: 1.25; display: block; }
+    .float-card small { color: #758198; font-size: 10px; display: block; margin-top: 4px; }
+    .card-data { top: 12%; right: -1%; transform: rotate(5deg); animation-delay: -1.3s; }
+    .card-ai { top: 43%; left: -2%; transform: rotate(-5deg); animation-delay: -.3s; }
+    .card-cloud { right: -1%; bottom: 18%; transform: rotate(5deg); animation-delay: -2.7s; }
+    @keyframes float { 0%,100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+    .handwritten { position: absolute; z-index: 4; right: 0; top: 34%; font-family: "Manrope", sans-serif; font-style: italic; font-weight: 500; color: #1c5de9; font-size: clamp(23px, 2.8vw, 38px); line-height: 1.28; transform: rotate(-9deg); letter-spacing: -.06em; }
+    .handwritten span { display: block; }
+    .signature { position: absolute; right: 3%; bottom: 9%; z-index: 5; font-family: "Manrope", sans-serif; color: #17315d; font-size: 24px; font-style: italic; transform: rotate(-8deg); }
+    .signature::after { content: ""; display: block; height: 2px; border-radius: 50%; background: #1e64fa; transform: rotate(-4deg); margin-top: 2px; }
+    .scroll-cue { position: absolute; bottom: 4px; left: 52%; display: flex; flex-direction: column; align-items: center; gap: 7px; color: #7b879e; font-size: 10px; letter-spacing: .09em; font-weight: 700; }
+    .mouse { width: 18px; height: 30px; border: 1.7px solid #18243b; border-radius: 99px; position: relative; }
+    .mouse::after { content: ""; position: absolute; top: 6px; left: 7px; width: 2px; height: 5px; background: #18243b; border-radius: 2px; animation: scrollDot 1.5s ease-in-out infinite; }
+    @keyframes scrollDot { 0% { opacity: 0; transform: translateY(-2px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(7px); } }
+    .leaf-glow { position: fixed; z-index: -5; width: 190px; height: 190px; border-radius: 50%; filter: blur(35px); opacity: .45; pointer-events: none; }
+    .leaf-left { left: -130px; bottom: 3%; background: #9bbf86; }
+    .leaf-right { right: -130px; bottom: 2%; background: #b4d19f; }
+    .reveal { opacity: 0; transform: translateX(-28px); animation: revealIn .85s cubic-bezier(.16,1,.3,1) forwards; }
+    .d1 { animation-delay: .12s; } .d2 { animation-delay: .28s; } .d3 { animation-delay: .42s; } .d4 { animation-delay: .56s; } .d5 { animation-delay: .70s; } .d6 { animation-delay: .84s; }
+    @keyframes revealIn { to { opacity: 1; transform: translateX(0); } }
+    .portrait-reveal { opacity: 0; transform: translate(24px, 18px) scale(.975); animation: portraitIn 1.15s cubic-bezier(.16,1,.3,1) .28s forwards; }
+    @keyframes portraitIn { to { opacity: 1; transform: translate(0,0) scale(1); } }
+    @media (max-width: 1080px) {
+      .page-shell { width: min(100% - 42px, 920px); }
+      .hero { grid-template-columns: 1fr .9fr; gap: 0; }
+      .hero h1 { font-size: clamp(58px, 7.7vw, 86px); }
+      .portrait-stage { min-height: 590px; }
+      .portrait { height: min(74vh, 690px); right: -3%; }
+      .float-card { min-width: 165px; padding: 12px 13px; gap: 9px; }
+      .card-ai { left: -3%; }
+      .highlights { padding: 12px 8px; }
+      .highlight { gap: 8px; padding: 4px 8px; }
+      .highlight-icon { width: 37px; height: 37px; flex-basis: 37px; }
+      .tech { width: 46px; height: 46px; }
+    }
+    @media (max-width: 760px) {
+      .page-shell { width: calc(100% - 32px); }
+      .nav-wrap { padding-top: 10px; }
+      .nav { height: 62px; padding: 0 17px; border-radius: 19px; }
+      .brand { font-size: 28px; }
+      .menu-toggle { display: block; }
+      .connect { padding: 11px 14px; font-size: 12px; margin-left: auto; margin-right: 12px; }
+      .nav-links { display: none; position: absolute; top: 80px; left: 0; right: 0; padding: 15px; background: rgba(255,255,255,.94); backdrop-filter: blur(18px); box-shadow: var(--shadow); border: 1px solid white; border-radius: 18px; flex-direction: column; gap: 0; align-items: stretch; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px 12px; }
+      .nav-links a::after { bottom: 5px; left: 12px; }
+      .hero { min-height: auto; display: flex; flex-direction: column; align-items: stretch; padding-top: 42px; gap: 0; }
+      .hero-copy { order: 1; padding-bottom: 0; }
+      .eyebrow { font-size: 11px; letter-spacing: .24em; }
+      .hero h1 { font-size: clamp(58px, 15vw, 88px); margin-bottom: 16px; }
+      .role { font-size: clamp(19px, 5vw, 25px); }
+      .intro { max-width: 520px; font-size: 16px; }
+      .actions { margin-top: 22px; gap: 10px; }
+      .btn { min-height: 49px; padding: 0 18px; font-size: 13px; }
+      .btn-primary, .btn-secondary { min-width: 0; }
+      .highlights { margin-top: 24px; padding: 10px 5px; border-radius: 18px; }
+      .highlight { flex-direction: column; text-align: center; gap: 7px; padding: 5px 6px; }
+      .highlight-icon { width: 35px; height: 35px; flex-basis: 35px; border-radius: 11px; }
+      .highlight-icon svg { width: 20px; height: 20px; }
+      .highlight strong { font-size: 11px; }
+      .highlight small { font-size: 9px; }
+      .tech-block { margin-top: 25px; }
+      .tech-label { font-size: 10px; }
+      .tech-list { gap: 8px; }
+      .tech { width: 43px; height: 43px; border-radius: 12px; }
+      .portrait-stage { order: 2; min-height: min(115vw, 540px); margin-top: 7px; overflow: visible; }
+      .halo { width: min(90vw, 430px); top: 48%; left: 50%; }
+      .orbit { width: min(94vw, 450px); top: 48%; left: 50%; }
+      .orbit.two { width: min(80vw, 380px); }
+      .portrait { height: min(112vw, 550px); max-width: 100%; right: 50%; transform: translateX(50%); bottom: -1px; }
+      .portrait-reveal { animation: portraitMobileIn 1s cubic-bezier(.16,1,.3,1) .25s forwards; }
+      @keyframes portraitMobileIn { from { opacity: 0; translate: 22px 16px; scale: .98; } to { opacity: 1; translate: 0 0; scale: 1; } }
+      .float-card { min-width: 140px; max-width: 165px; border-radius: 14px; padding: 9px 10px; gap: 8px; }
+      .float-card .card-icon { width: 32px; height: 32px; flex-basis: 32px; border-radius: 10px; }
+      .card-icon svg { width: 20px; height: 20px; }
+      .float-card strong { font-size: 10px; }
+      .float-card small { font-size: 8px; }
+      .card-ai { top: 40%; left: -1%; }
+      .card-data { top: 12%; right: -1%; }
+      .card-cloud { right: -1%; bottom: 12%; }
+      .handwritten { right: -2%; top: 49%; font-size: 20px; }
+      .signature { display: none; }
+      .scroll-cue { position: relative; left: auto; bottom: auto; align-self: center; margin: 0 0 24px; order: 3; }
+    }
+    @media (max-width: 410px) {
+      .hero h1 { font-size: 55px; }
+      .actions { align-items: stretch; }
+      .btn { padding: 0 14px; font-size: 12px; }
+      .highlights { grid-template-columns: 1fr 1fr 1fr; }
+      .highlight small { font-size: 8px; }
+      .portrait-stage { min-height: 120vw; }
+      .float-card { min-width: 132px; max-width: 148px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .reveal, .portrait-reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="leaf-glow leaf-left"></div><div class="leaf-glow leaf-right"></div>
+  <div class="page-shell">
+    <header class="nav-wrap">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="Imran A home">i<span class="dot">.</span>A</a>
+        <div class="nav-links" id="navLinks">
+          <a class="active" href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="connect" href="#contact">Let's Connect <span aria-hidden="true">↗</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-label="Introduction">
+        <div class="hero-copy">
+          <p class="eyebrow reveal d1">HELLO, I'M</p>
+          <h1 class="reveal d2">Imran<span class="accent">.A</span></h1>
+          <p class="role reveal d3">Software Engineer <span aria-hidden="true">|</span> AI Engineer</p>
+          <p class="intro reveal d4">Building <strong>AI-powered solutions</strong> that solve real-world problems.</p>
+
+          <div class="actions reveal d5">
+            <a class="btn btn-primary" href="#projects">Explore My Work <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#contact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 17v4h14v-4"/></svg> Download Resume</a>
+          </div>
+
+          <div class="highlights reveal d6" id="about">
+            <div class="highlight">
+              <span class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg></span>
+              <span><strong>OwlSure</strong><small>Software Engineer · AI</small></span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 9 12 4l10 5-10 5L2 9Z"/><path d="M6 11v5c3.7 3 8.3 3 12 0v-5M22 9v6"/></svg></span>
+              <span><strong>MCA</strong><small>Generative AI · SRM</small></span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M6 4h12v5a6 6 0 0 1-12 0V4Z"/><path d="M6 6H3v2a4 4 0 0 0 4 4M18 6h3v2a4 4 0 0 1-4 4"/></svg></span>
+              <span><strong>1st Prize</strong><small>Mission Possible</small></span>
+            </div>
+          </div>
+
+          <div class="tech-block reveal d6">
+            <p class="tech-label">TECH I WORK WITH</p>
+            <div class="tech-list" aria-label="Selected technologies">
+              <div class="tech" title="Python" aria-label="Python"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#3776ab" d="M15.8 3c-7.2 0-6.7 3.1-6.7 3.1l.1 3.2h6.9v1H6.5S2 9.8 2 16.2s3.9 6.2 3.9 6.2h2.3v-3.2s-.1-3.9 3.8-3.9h6.5s3.7.1 3.7-3.6V6.7S22.8 3 15.8 3Z"/><circle cx="12.8" cy="6.8" r="1.1" fill="#fff"/><path fill="#ffd343" d="M16.2 29c7.2 0 6.7-3.1 6.7-3.1l-.1-3.2h-6.9v-1h9.6s4.5.5 4.5-5.9-3.9-6.2-3.9-6.2h-2.3v3.2s.1 3.9-3.8 3.9h-6.5s-3.7-.1-3.7 3.6v5s-.6 3.7 6.4 3.7Z"/><circle cx="19.2" cy="25.2" r="1.1" fill="#fff"/></svg></div>
+              <div class="tech" title="C# / .NET" aria-label="C sharp and dot NET">C#</div>
+              <div class="tech" title="React" aria-label="React"><svg viewBox="0 0 32 32" fill="none" stroke="#08b6d8" stroke-width="1.5" aria-hidden="true"><ellipse cx="16" cy="16" rx="13" ry="5"/><ellipse cx="16" cy="16" rx="13" ry="5" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="13" ry="5" transform="rotate(120 16 16)"/><circle cx="16" cy="16" r="2.2" fill="#08b6d8"/></svg></div>
+              <div class="tech" title="FastAPI" aria-label="FastAPI"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#109989"/><path d="M18 3 9 17h6l-1 12 9-15h-6l1-11Z" fill="#fff"/></svg></div>
+              <div class="tech" title="LangChain" aria-label="LangChain"><svg viewBox="0 0 32 32" fill="none" stroke="#172239" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 20 9 23a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 0"/><path d="m20 12 3-3a5 5 0 0 1 7 7l-6 6a5 5 0 0 1-7 0"/><path d="m11 21 10-10"/></svg></div>
+              <div class="tech" title="PostgreSQL" aria-label="PostgreSQL"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#31648c" d="M7 4c3-2 15-2 18 1l2 5-2 10-3 2-2-2v6l-5 2-2-8-4-1-3-7 1-6Z"/><path fill="none" stroke="#fff" stroke-width="1.1" d="M8 7c1 4 2 6 5 7m4-7c0 5 1 8 4 10m-4-1-2 9m7-15 3-1"/></svg></div>
+              <div class="tech" title="Databricks" aria-label="Databricks"><svg viewBox="0 0 32 32" fill="none" stroke="#ff3621" stroke-width="2" aria-hidden="true"><path d="m16 4 13 6-13 6L3 10l13-6Z"/><path d="m3 16 13 6 13-6M3 22l13 6 13-6"/></svg></div>
+              <div class="tech" title="Azure" aria-label="Azure"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#0089d6" d="M13 3h9L9 29H1L13 3Z"/><path fill="#0078d4" d="M17 18h10l4 11H11l6-11Z"/></svg></div>
+              <div class="tech" title="Microsoft Fabric" aria-label="Microsoft Fabric"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#11a8e8" d="M5 8 23 2l5 5-13 5 9 6-7 12-7-1 5-9-10-5Z"/><path fill="#35c7a5" d="m9 22 8-3 3 4-6 7H6Z"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portrait-stage" aria-label="Portrait and areas of focus">
+          <div class="halo"></div><div class="orbit"></div><div class="orbit two"></div>
+          <img class="portrait portrait-reveal" src="assets/imran-portrait.webp" alt="Imran A wearing a black blazer and light shirt" fetchpriority="high">
+          <div class="float-card card-ai">
+            <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a5 5 0 0 0-5 5v1a4 4 0 0 0-2 7 4 4 0 0 0 7 3V6M12 3a5 5 0 0 1 5 5v1a4 4 0 0 1 2 7 4 4 0 0 1-7 3V6"/><path d="M8 11h2m4 0h2M8 15h2m4 0h2"/></svg></span>
+            <span><strong>AI &amp; LLM Solutions</strong><small>Generative AI · RAG</small></span>
+          </div>
+          <div class="float-card card-data">
+            <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20V12h4v8H4Zm6 0V7h4v13h-4Zm6 0V3h4v17h-4Z"/></svg></span>
+            <span><strong>Data Engineering</strong><small>Reliable · Scalable</small></span>
+          </div>
+          <div class="float-card card-cloud">
+            <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 18h11a4 4 0 0 0 .5-8A6 6 0 0 0 7 8a5 5 0 0 0 0 10Z"/></svg></span>
+            <span><strong>Cloud &amp; Scalable Systems</strong><small>Modern applications</small></span>
+          </div>
+          <div class="handwritten" aria-hidden="true"><span>Build</span><span>Learn</span><span>Grow</span></div>
+          <div class="signature" aria-hidden="true">Imran.A</div>
+        </div>
+        <a class="scroll-cue" href="#projects" aria-label="Scroll down to projects"><span class="mouse"></span><span>SCROLL DOWN</span><span aria-hidden="true">⌄</span></a>
+      </section>
+
+      <section id="projects" style="padding:68px 0 86px; border-top:1px solid rgba(91,113,153,.12)">
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2 style="font:800 clamp(30px,4vw,48px) Manrope,sans-serif;letter-spacing:-.055em;margin:0 0 22px">Built to solve real problems<span style="color:var(--blue)">.</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+          <a href="https://family-portal.up.railway.app/" target="_blank" rel="noreferrer" style="padding:24px;border-radius:22px;border:1px solid white;background:rgba(255,255,255,.7);box-shadow:var(--shadow);transition:transform .25s ease">
+            <span style="color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.13em">01 / INSURTECH</span><h3 style="font:800 22px Manrope,sans-serif;margin:12px 0 8px">ClanSure ↗</h3><p style="color:var(--muted);font-size:14px;line-height:1.6;margin:0">A family insurance platform bringing policies, documents, renewals, and AI assistance into one place.</p>
+          </a>
+          <a href="https://gt-companion.up.railway.app/#landing" target="_blank" rel="noreferrer" style="padding:24px;border-radius:22px;border:1px solid white;background:rgba(255,255,255,.7);box-shadow:var(--shadow);transition:transform .25s ease">
+            <span style="color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.13em">02 / LEARNING</span><h3 style="font:800 22px Manrope,sans-serif;margin:12px 0 8px">GT Companion ↗</h3><p style="color:var(--muted);font-size:14px;line-height:1.6;margin:0">A structured training and knowledge platform with roadmaps, learning resources, and quizzes.</p>
+          </a>
+          <a href="https://github.com/imranabdul-cmd/AGRI-GRADE-AUTOMATED-QUALITY-GRADING-AND-PROFIT-ESTIMATION-SYSTEM-" target="_blank" rel="noreferrer" style="padding:24px;border-radius:22px;border:1px solid white;background:rgba(255,255,255,.7);box-shadow:var(--shadow);transition:transform .25s ease">
+            <span style="color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.13em">03 / COMPUTER VISION</span><h3 style="font:800 22px Manrope,sans-serif;margin:12px 0 8px">AI Agri Quality ↗</h3><p style="color:var(--muted);font-size:14px;line-height:1.6;margin:0">Computer vision for fruit defect detection, quality grading, and agricultural profit estimation.</p>
+          </a>
+        </div>
+      </section>
+      <section id="experience" style="padding:0 0 76px">
+        <p class="eyebrow">EXPERIENCE &amp; LEARNING</p>
+        <h2 style="font:800 clamp(26px,3.3vw,38px) Manrope,sans-serif;letter-spacing:-.05em;margin:0 0 12px">Software Engineering · AI · Generative AI</h2>
+        <p style="color:var(--muted);max-width:760px;line-height:1.8">Software Engineer with an AI engineering focus at OwlSure, a business unit of ValueMomentum; currently pursuing MCA in Generative AI at SRM University, Chennai.</p>
+      </section>
+      <section id="contact" style="padding:42px 32px 48px;border-radius:28px;background:linear-gradient(120deg,rgba(224,239,255,.95),rgba(255,255,255,.8));border:1px solid white;margin-bottom:36px">
+        <p class="eyebrow">LET'S CONNECT</p>
+        <h2 style="font:800 clamp(32px,4vw,48px) Manrope,sans-serif;letter-spacing:-.06em;margin:0 0 12px">Have an idea in mind?</h2>
+        <p style="color:var(--muted);margin:0 0 22px;line-height:1.7">Let's build something useful with data, software, and AI.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="mailto:imran.abdul.official@gmail.com">Email Me ↗</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/imran-aupe" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a class="btn btn-secondary" href="https://github.com/imranabdul-cmd" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
+      </section>
+    </main>
+    <footer style="padding:0 0 28px;color:#8792a5;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span>© <span id="year"></span> Imran A</span><span>Designed with clarity. Built with curiosity.</span></footer>
+  </div>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.textContent = isOpen ? '×' : '☰';
+    });
+    links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const sectionLinks = [...document.querySelectorAll('.nav-links a')];
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sectionLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
